@@ -2,53 +2,74 @@ package com.example.metacoders.dictionary;
 
 import android.content.ContentValues;
 import android.content.Context;
-
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static  final  String Tag = "DatabaseHelper" ;
-    private static  final  String COL0 = "ID";
-    private  static  final  String COL1 = "Name";
-    private static  final  String TABLE_NAME = "users_data";
+    private  static  final String Tag = "DatabaseHelper";
+    private  static  final String COL0 = "ID" ;
+    private  static  final String COL1= "name";
+    private  static  final String TABLE_NAME ="users_data";
+
+
 
     public DatabaseHelper(Context context) {
-        super(context,TABLE_NAME , null , 1 );
-    }
 
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COL1 +" TEXT)";
-        sqLiteDatabase.execSQL(createTable);
+        super(context,TABLE_NAME, null, 1);
+
 
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+    public void onCreate(SQLiteDatabase db) {
+            String createTable = "CREATE TABLE "+ TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"+
+                    COL1 +" TEXT)";
+            db.execSQL(createTable);
 
-onCreate(sqLiteDatabase);
+    }
 
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(db);
 
 
     }
-    public  boolean addData(String item){
+
+    public  boolean addDATA(String name ){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues( );
-        contentValues.put(COL1 , item);
-        Log.d(Tag,"ADD DATA  ADDING :"+ item + "TO"+ TABLE_NAME);
-        long result = db.insert(TABLE_NAME , null , contentValues);
-        // check did it save it or not .
+        ContentValues  content = new ContentValues() ;
+        content.put(COL1 ,name  );
 
-        if(result == -1  ){
-             return  false ;
+        long result = db.insert(TABLE_NAME, null, content);
 
-        }
-        else {
-            return  true ;
-        }
+       if(result == -1){
+
+           return  false ;
+
+       }
+       else {
+
+           return  true ;
+       }
+
+
+
+
     }
+    public  Cursor getdata(){
+        SQLiteDatabase db = this.getWritableDatabase() ;
+        String query = "SELECT * FROM " + TABLE_NAME ;
+        Cursor data =db.rawQuery(query , null);
+        return  data ;
+
+
+    }
+
+
+
+
+
 
 }

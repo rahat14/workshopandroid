@@ -8,14 +8,14 @@
 
     <TextView
         android:id="@+id/textView"
-        android:fontFamily="@font/title_font"
         android:layout_width="211dp"
         android:layout_height="54dp"
+        android:fontFamily="@font/title_font"
+        android:gravity="center"
         android:text="Your App Title"
         android:textColor="#000"
-        android:textStyle="bold"
-        android:gravity="center"
         android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -31,8 +31,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="76dp"
         android:ems="10"
+        android:hint="Name"
         android:inputType="textPersonName"
-        android:hint="Data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,11 +44,24 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="Add data "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_input" />
+
+    <Button
+        android:id="@+id/button_Show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:text="Show Data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.223"
+        app:layout_constraintStart_toEndOf="@+id/ADD_btn"
+        app:layout_constraintTop_toBottomOf="@+id/editText_input" />
 
 </android.support.constraint.ConstraintLayout>
